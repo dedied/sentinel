@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 
+
 test('FitTrack Pro loads correctly', async ({ page }) => {
   // Navigate to your deployed site
   await page.goto('https://dedied.github.io/fittrack-pro/');
