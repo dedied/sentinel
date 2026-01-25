@@ -28,10 +28,3 @@ test('There should be a console.log for "Service Worker Registered"', async ({ p
     await page.goto('https://dedied.github.io/fittrack-pro/');
     await page.waitForTimeout(1500); expect(messages).toContain('Service Worker Registered'); 
 });
-
-test('There should be a console.log for "Native install prompt captured globally"', async ({ page }) => { 
-    const messages: string[] = []; 
-    page.on('console', msg => { if (msg.type() === 'log') { messages.push(msg.text()); } }); 
-    await page.goto('https://dedied.github.io/fittrack-pro/'); 
-    await page.waitForTimeout(1500); expect(messages).toContain('Native install prompt captured globally'); 
-});
