@@ -10,3 +10,13 @@ test('FitTrack Pro loads correctly', async ({ page }) => {
   // Or check for a visible element you know exists
   await expect(page.locator('text=FitTrack')).toBeVisible();
 });
+
+test('Save entry', async ({ page }) => {
+  await page.goto('https://dedied.github.io/fittrack-pro/');
+  await page.getByRole('button', { name: 'Continue as Guest' }).click();
+  await page.getByRole('button', { name: 'Log Workout' }).click();
+  await page.getByPlaceholder('0').click();
+  await page.getByPlaceholder('0').fill('5');
+  await page.getByRole('button', { name: 'Finish Entry' }).click();
+  await expect(page.getByText('✓ Saved!')).toBeVisible();
+});

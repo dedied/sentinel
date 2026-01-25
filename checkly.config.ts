@@ -5,11 +5,11 @@ import { defineConfig } from 'checkly'
  */
 const config = defineConfig({
   /* A human friendly name for your project */
-  projectName: 'undefined',
+  projectName: 'FitTrack Pro Monitoring',
   /** A logical ID that needs to be unique across your Checkly account,
   * See https://www.checklyhq.com/docs/cli/constructs/ to learn more about logical IDs.
   */
-  logicalId: 'undefined',
+  logicalId: 'fittrack-pro-monitoring',
   /* An optional URL to your Git repo */
   repoUrl: 'https://github.com/checkly/checkly-cli',
   /* Sets default values for Checks */
@@ -26,29 +26,13 @@ const config = defineConfig({
     runtimeId: '2025.04',
     /* A glob pattern that matches the Checks inside your repo, see https://www.checklyhq.com/docs/constructs/including-checks/#checks-checkmatch */
     checkMatch: '**/__checks__/**/*.check.ts',
-    /* Global configuration option for Browser and Multistep checks. See https://www.checklyhq.com/docs/browser-checks/playwright-test/#global-configuration */
-    playwrightConfig: {
-      timeout: 30000,
-      use: {
-        baseURL: 'https://www.danube-web.shop',
-        viewport: { width: 1280, height: 720 },
-      }
-    },
     browserChecks: {
       /* A glob pattern matches any Playwright .spec.ts files and automagically creates a Browser Check. This way, you
       * can just write Playwright code. See https://www.checklyhq.com/docs/constructs/including-checks/#browserchecks-testmatch
       * */
       testMatch: '**/__checks__/**/*.spec.ts',
-    },
-    // Playwright Check Suites definition, run the whole Playwright Test Suite in a Check
-    playwrightConfigPath: './playwright.config.ts',
-    playwrightChecks: [
-      {
-        logicalId: 'playwright-check-suite',
-        name: 'Playwright Check Suite Simple TS',
-        //Use `testCommand: npx playwright test` to filter the tests you want to run
-      }
-    ],
+    }
+
   },
   cli: {
     /* The default datacenter location to use when running npx checkly test */
