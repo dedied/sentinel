@@ -19,5 +19,5 @@ test('Save entry', async ({ page }) => {
   await page.getByPlaceholder('0').click();
   await page.getByPlaceholder('0').fill('5');
   await page.getByRole('button', { name: 'Finish Entry' }).click();
-  await expect(page.getByText('✓ Saved!')).toBeVisible();
+  await expect(page.getByText('✓ Savexd!')).toBeVisible();
 });
