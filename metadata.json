@@ -1,5 +1,0 @@
-{
-  "name": "Sentinel Test Suite",
-  "description": "An elegant test suite dashboard for managing Playwright tests for web applications like FitTrack.",
-  "requestFramePermissions": []
-}
