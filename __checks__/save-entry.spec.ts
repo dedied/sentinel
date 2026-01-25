@@ -2,7 +2,7 @@
 
 import { test, expect } from '@playwright/test';
 
-test('The "Save Entry" button should display a "✓ Saved!" toast message on a successful save', async ({ page }) => {
+test('The "Save Entry" button should trigger a "✓ Saved!" toast message on a successful save', async ({ page }) => {
   await page.goto('https://dedied.github.io/fittrack-pro/');
   await page.getByRole('button', { name: 'Continue as Guest' }).click();
   await page.getByRole('button', { name: 'Log Workout' }).click();
