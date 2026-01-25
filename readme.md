@@ -142,3 +142,8 @@ jobs:
     ```
     npx checkly trigger
     ```
+## Workflow
+- see an error in ai studio
+- deploy to github
+- write the test to detect the error and check it works: `npx checkly test`
+- deploy the test: `npx checkly deploy`
