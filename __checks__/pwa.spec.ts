@@ -1,9 +1,9 @@
-// @checklyId 5841932b-9c3e-45b2-b815-97ae4d50c123
+
 import { test, expect } from '@playwright/test';
 
 test('PWA is installable', async ({ page, context }) => {
   // Navigate to your PWA
-  await page.goto('https://dedied.github.io/fittrack-pro/');
+  await page.goto('http://localhost:5173/');
 
   // Create a DevTools session
   const client = await context.newCDPSession(page);
@@ -25,6 +25,6 @@ test('PWA is installable', async ({ page, context }) => {
 test('There should be a console.log for "Service Worker Registered"', async ({ page }) => { 
     const messages: string[] = []; 
     page.on('console', msg => { if (msg.type() === 'log') { messages.push(msg.text()); } }); 
-    await page.goto('https://dedied.github.io/fittrack-pro/');
+    await page.goto('http://localhost:5173/');
     await page.waitForTimeout(1500); expect(messages).toContain('Service Worker Registered'); 
 });
