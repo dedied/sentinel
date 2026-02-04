@@ -32,7 +32,6 @@ test('login with Supabase OTP using Mailinator', async ({ page, context }) => {
   if (!match) throw new Error('OTP not found in email body');
 
   const otp = match[0];
-  console.log('Extracted OTP:', otp);
 
   // 7. Return to your app tab (no reload)
   await app.bringToFront();

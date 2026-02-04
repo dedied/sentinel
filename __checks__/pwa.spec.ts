@@ -13,8 +13,6 @@ test('PWA is installable', async ({ page, context }) => {
     errors?: string[];
   };
 
-  console.log('Installability errors:', result.errors);
-
   // Normalise undefined → empty array (Checkly Cloud returns {})
   const errors = result.errors ?? [];
 
