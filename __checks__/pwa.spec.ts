@@ -1,7 +1,9 @@
 
 import { test, expect } from '@playwright/test';
 
-test('PWA is installable', async ({ page, context }) => {
+test('PWA is installable', async ({ context }) => {
+  const page = await context.newPage()
+
   // Navigate to your PWA
   await page.goto('http://localhost:5173/');
 
@@ -20,8 +22,10 @@ test('PWA is installable', async ({ page, context }) => {
   expect(errors).toEqual([]);
 });
 
-test('There should be a console.log for "Service Worker Registered"', async ({ page }) => { 
+test('There should be a console.log for "Service Worker Registered"', async ({ context }) => { 
     const messages: string[] = []; 
+    const page = await context.newPage()
+
     page.on('console', msg => { if (msg.type() === 'log') { messages.push(msg.text()); } }); 
     await page.goto('http://localhost:5173/');
     await page.waitForTimeout(1500); expect(messages).toContain('Service Worker Registered'); 

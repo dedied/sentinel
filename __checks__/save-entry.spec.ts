@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-test('The "Save Entry" button should trigger a "✓ Saved!" toast message on a successful save', async ({ page }) => {
+test('The "Save Entry" button should trigger a "✓ Saved!" toast message on a successful save', async ({ context }) => {
+  const page = await context.newPage();
   await page.goto('http://localhost:5173/');
   await page.getByRole('button', { name: 'Continue as Guest' }).click();
   await page.getByRole('button', { name: 'Log Workout' }).click();

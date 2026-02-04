@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-test('login with Supabase OTP using Mailinator', async ({ page, context }) => {
+test('login with Supabase OTP using Mailinator', async ({ context }) => {
+  const page = await context.newPage()
   // 1. Create random inbox
   const inbox = `test_${Date.now()}_${Math.random().toString(36).slice(2)}`;
   const email = `${inbox}@mailinator.com`;
