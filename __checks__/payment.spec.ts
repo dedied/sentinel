@@ -55,11 +55,24 @@ test('Check that a user can login and successfully pay', async ({ context }) => 
   await app.getByRole('textbox', { name: 'CVC' }).fill('123');
   await app.getByRole('textbox', { name: 'Cardholder name' }).click();
   await app.getByRole('textbox', { name: 'Cardholder name' }).fill('A Test');
-  await app.getByTestId('hosted-payment-submit-button').click();
+  
+
+  // Click submit and wait for Stripe Checkout to load
+  await Promise.all([
+    app.waitForURL(/checkout\.stripe\.com/),
+    app.getByTestId('hosted-payment-submit-button').click()
+  ])
+
+  // Now wait for Stripe to redirect back to your app
+  await app.waitForURL(/payment_success=true/)
+
+
+  // Bring your app tab back
+  await app.bringToFront()
 
   // 10. Assert payment success and access to premium features
-  await app.goto('http://localhost:5173/');
-  await app.getByRole('button', { name: 'Settings' }).click();
-  await app.getByText('Premium').click();  
+  await expect(app.getByText('Welcome to Premium! Cloud Sync is now active.')).toBeVisible();
+
+  
 });
 

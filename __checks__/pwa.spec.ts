@@ -28,5 +28,6 @@ test('There should be a console.log for "Service Worker Registered"', async ({ c
 
     page.on('console', msg => { if (msg.type() === 'log') { messages.push(msg.text()); } }); 
     await page.goto('http://localhost:5173/');
-    await page.waitForTimeout(1500); expect(messages).toContain('Service Worker Registered'); 
+    await page.waitForTimeout(1500); 
+    expect(messages).toContain('Service Worker Registered'); 
 });
