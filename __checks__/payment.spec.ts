@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test';
 
-test('login with Supabase OTP using Mailinator', async ({ context }) => {
+test('Check that a user can login and successfully pay', async ({ context }) => {
   const page = await context.newPage()
+
   // 1. Create random inbox
   const inbox = `test_${Date.now()}_${Math.random().toString(36).slice(2)}`;
   const email = `${inbox}@mailinator.com`;
@@ -41,4 +42,23 @@ test('login with Supabase OTP using Mailinator', async ({ context }) => {
 
   // 8. Assert login success
   await expect(app.getByText('Premium Required')).toBeVisible();
+
+  // 9. Proceed to payment and fill out the form
+  await app.getByRole('button', { name: 'Proceed to Payment' }).click();
+  await app.locator('#payment-method-accordion-item-title-card').check({ force: true });
+  await app.getByRole('textbox', { name: 'Card number' }).click();
+  await app.getByRole('textbox', { name: 'Card number' }).fill('4242 4242 4242 4242');
+  await app.getByRole('textbox', { name: 'Expiration' }).click();
+  await app.getByRole('textbox', { name: 'Expiration' }).fill('01 / 28');
+  await app.getByRole('textbox', { name: 'CVC' }).click();
+  await app.getByRole('textbox', { name: 'CVC' }).fill('123');
+  await app.getByRole('textbox', { name: 'Cardholder name' }).click();
+  await app.getByRole('textbox', { name: 'Cardholder name' }).fill('A Test');
+  await app.getByTestId('hosted-payment-submit-button').click();
+
+  // 10. Assert payment success and access to premium features
+  await app.goto('http://localhost:5173/');
+  await app.getByRole('button', { name: 'Settings' }).click();
+  await app.getByText('Premium').click();  
 });
+
