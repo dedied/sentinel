@@ -45,6 +45,7 @@ test('Check that a user can login and successfully pay', async ({ context }) => 
 
   // 9. Proceed to payment and fill out the form
   await app.getByRole('button', { name: 'Proceed to Payment' }).click();
+  await app.getByRole('button', { name: 'I Agree & Continue' }).click();
   await app.locator('#payment-method-accordion-item-title-card').check({ force: true });
   await app.getByRole('textbox', { name: 'Card number' }).click();
   await app.getByRole('textbox', { name: 'Card number' }).fill('4242 4242 4242 4242');
