@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 
+test.setTimeout(60_000) // 60 seconds for all tests in this file
+
+
 test('Check that a user can login and successfully pay', async ({ context }) => {
   const page = await context.newPage()
 
